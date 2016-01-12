@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #243342;
+}
+
+.multilevelpushmenu_wrapper { position: fixed !important; }
+
+#pushobj {
+    position: absolute;
+    top: 0px;
+    left: 280px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.5em;
+    z-index: 9999;
+}
+
+#pushobj ul {
+    font-size: .7em;
+}
+
+
+
+.hide {
+   display: none;
+}
+
+.ng-pageslide {
+  background: #eee;
+}
+
+
+p.status {
+   color: red;
+}
+
+p.status.good, p.good {
+   color: green;
+}
+
+form label {
+   display: block;
+   margin: 15px 0;
+}
+
+form label span {
+   display: block;
+   font-weight: bold;
+}
+
+.error {
+   color: red;
+}
+
+fieldset {
+   float: left;
+   margin-right: 25px;
+   padding: 25px;
+}

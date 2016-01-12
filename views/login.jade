@@ -1,0 +1,22 @@
+extends layout
+block body
+	div(class="container" style="background-image:url(/images/school-wallpaper.jpg);height:650px;width:100%")
+		form(class="form-signin" method="post")
+			h2(class="form-signin-heading") Please sign in
+				label(for="inputEmail", class="sr-only")
+					Email address
+				input(type="email", id="inputEmail", name="email" class="form-control", placeholder="Email address", required, autofocus)
+				label(for="inputPassword", class="sr-only") Password
+				input(type="password", id="inputPassword", name= "password", class="form-control", placeholder="Password", required)
+				br
+				button(class="btn btn-lg btn-primary btn-block", type="submit") Sign in
+				#error
+					if error
+						label.error #{error}
+script(src="js/ie10-viewport-bug-workaround.js")
+script(src="js/ie-emulation-modes-warning.js")
+|<!--[if lt IE 9]>
+|<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+|<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+|<![endif]-->
+

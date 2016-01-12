@@ -1,0 +1,17 @@
+{
+    "name": "WheelsOnTheBus"
+  , "version": "0.0.1"
+  , "private": true
+  , "scripts": {
+    	"start": "node app.js",
+    	"monitor": "nodemon app.js",
+    	"deploy": "gcloud preview app deploy wheelsonthebus.yaml"
+  }
+  , "dependencies": {
+      "express": "2.5.10"
+    , "jade": ">= 0.0.1"
+  }
+  , "engines": {
+    	"node": ">=0.10.17"
+  } 
+}

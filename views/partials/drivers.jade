@@ -1,0 +1,55 @@
+modal(title="Add new driver", visible="showModal")
+	form(role="form")
+		div(class="form-group")
+			label(for="name")
+			|Name
+			input(class="form-control", id="name", ng-model = "driver.name", placeholder="Enter name")
+		div(class="form-group")
+			label(for="contactNumber")
+			|Contact Number
+			input(class="form-control", id="contactNumber", ng-model = "driver.contactNumber", placeholder="Contact Number")
+		div(class="form-group")
+			label(for="drivingLicense")
+			|Driving License Number
+			input(class="form-control", id="drivingLicense", ng-model = "driver.licenseNumber", placeholder="Driving License")
+		div(class="form-group")
+			label(for="address")
+			|Address
+			input(class="form-control", id="address", ng-model = "driver.address", placeholder="Address")
+		button(class="btn btn-default" ng-click="save()")
+			|Save
+div(class= "row")
+	div(class= "col-md-12", style="font-size:20px")
+		div(style="padding: 4px")
+			div(style="padding 4px;")
+				b
+					|Driver List
+div(class= "row")
+	div(class= "col-md-12")				
+		a(href="javascript:void(0)",id= "btnAddNew" ng-click="toggleModal()")
+			i(class="fa fa-plus")
+			|Add a Driver	
+div(class= "row")
+	div(class= "col-md-12")
+		table(st-table="displayDrivers",st-safe-src="drivers",class="table table-striped")
+			thead
+				tr
+					th(colspan="5")
+						input(st-search="", class="form-control", placeholder="Search ...", type="text")
+				tr
+					th(st-sort="name") Name
+					th(st-sort="contactNumber") Contact Number
+					th(st-sort="licenseNumber") Driving License
+					th(st-sort="address") Address
+			tbody
+				tr(ng-repeat="row in displayDrivers")
+					td {{row.name}}
+					td {{row.contactNumber}}
+					td {{row.licenseNumber}}
+					td {{row.address}}
+					td(style="width:20px")
+						button(type="button", ng-click="editItem(row)", class="btn btn-sm btn-primary")
+							i(class="glyphicon glyphicon-pencil")
+					td(style="width:20px")
+						button(type="button", ng-click="removeItem(row)", class="btn btn-sm btn-danger")
+							i(class="glyphicon glyphicon-trash")		

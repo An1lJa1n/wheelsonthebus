@@ -1,0 +1,59 @@
+modal(title="Add new Service", visible="showModal")
+	form(role="form")
+		div(class="row")
+			div(class= "col-md-6")
+				div(class="form-group")
+					label(for="BusNumber") Bus Number
+					input(class="form-control", id="BusNumber", ng-model = "service.busNumber", placeholder="Enter bus number")
+			div(class= "col-md-6")
+				div(class="form-group")
+					label(for="route") Route
+					input(class="form-control", id="route", ng-model = "service.route", placeholder="Route Details")
+			div(class = "col-md-12")
+				div(class="form-group")
+					label(for="shiftTime") Shift Time
+					uib-timepicker(id="shiftTime",ng-model="service.shiftTime",  hour-step="hstep", minute-step="mstep", show-meridian="false")
+			div(class= "col-md-6")
+				div(class="form-group")
+					label(for="driver") Driver	
+					select(id="driver",class="form-control", ng-change="setSelectedDriver(selectedDriver)", ng-model="selectedDriver")
+						option(ng-repeat="option in drivers", value="{{option.key}}"){{option.name}}
+			div(class= "col-md-6")
+				div(class="form-group")
+					label(for="app") App
+					select(id="app",class="form-control", ng-change="setSelectedApp(selectedApp)", ng-model="selectedApp")
+						option(ng-repeat="option in apps", value="{{option.key}}"){{option.mobileNumber}}
+		button(class="btn btn-default" ng-click="save()") Save
+div(class= "row")
+	div(class= "col-md-12", style="font-size:20px")
+		div(style="padding: 4px")
+			div(style="padding 4px;")
+				b Services List
+div(class= "row")
+	div(class= "col-md-12")				
+		a(href="javascript:void(0)",id= "btnAddNew" ng-click="toggleModal()")
+			i(class="fa fa-plus")  Add a Service	
+div(class= "row")
+	div(class= "col-md-12")
+		table(st-table="displayServices",st-safe-src="services",class="table table-striped")
+			thead
+				tr
+					th(colspan="5")
+						input(st-search="", class="form-control", placeholder="Search ...", type="text")
+				tr
+					th(st-sort="busNumber") Bus Number
+					th(st-sort="route") Route
+					th(st-sort="shiftTime") Shift Time
+					th
+					th
+			tbody
+				tr(ng-repeat="row in displayServices")
+					td {{row.busNumber}}
+					td {{row.route}}
+					td {{getTime(row.shiftTime)}}
+					td(style="width:20px")
+						button(type="button", ng-click="editItem(row)", class="btn btn-sm btn-primary")
+							i(class="glyphicon glyphicon-pencil")
+					td(style="width:20px")
+						button(type="button", ng-click="removeItem(row)", class="btn btn-sm btn-danger")
+							i(class="glyphicon glyphicon-trash")		
