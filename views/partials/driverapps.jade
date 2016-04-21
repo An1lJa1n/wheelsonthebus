@@ -4,7 +4,7 @@ div(class= "row")
 			div(style="padding 4px;")
 				b
 					|Bus Tracking Applications 
-	modal(title="Regisiter new app", visible="showModal", formname = "appRegistratiion")
+	modal(title="Regisiter new Device", visible="showModal", formname = "appRegistratiion")
 		form(role="form" name= "appRegistratiion" novalidate ng-init="setFormScope(this)")
 			div(class="form-group")
 				label(for="imei")
@@ -31,7 +31,7 @@ div(class= "row")
 	div(class= "col-md-8")				
 		a(href="javascript:void(0)",id= "btnAddApp" ng-click="toggleModal()")
 			i(class="fa fa-plus")
-			|Add an application
+			|Add a Device
 div(class= "row")
 	div(class= "col-md-12")
 		table(st-table="displayApps",st-safe-src="apps",class="table table-striped")

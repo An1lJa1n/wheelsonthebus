@@ -1,5 +1,5 @@
 'use strict';
-angular.module("myApp.controllers").controller('appsCtrl', function($scope,$http) {
+angular.module("myApp.controllers").controller('devicesCtrl', function($scope,$http) {
     $scope.app = {};
     $scope.apps = [];
     $scope.showModal = false;

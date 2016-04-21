@@ -57,3 +57,24 @@ fieldset {
    margin-right: 25px;
    padding: 25px;
 }
+.footer{
+      z-index: 999;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #222;
+}
+.footer-link{
+  margin-top: 15px;
+}
+.footer-link:hover{
+  color:#767676;
+}
+.footer-info{
+  float: right;
+  margin:0 30px 10px 0;
+  color:#767676;
+}
+
+.multilevelpushmenu_wrapper{top:50px;}

@@ -1,0 +1,36 @@
+extends layout
+block body
+	div(ng-controller='menuCtrl')
+		div(class="header", style="background-color: darkslateblue;")
+			div(style="display:inline-block;margin-top: 10px;font-size: 20px;margin-left: 20px;color: white;") {{schoolName}}
+			div(style="display:inline-block;float:right; margin: 10px;")
+				button(type="button", ng-click="logout()", class="btn btn-sm btn-danger")
+					i(class="glyphicon glyphicon-log-out")
+		wxy-push-menu(menu="menu", options="options")
+		div(id="pushobj", style="width:75%;top:50px")
+			div(ng-view, style="font-size:small")
+			ul
+				li(ng-repeat="event in events track by $index", ng-bind="event")
+	div(class="footer")
+		div(class="footer-link text-center")
+			a(class="color-white") Contact Us
+		div(class="footer-info") Powered by Balistic	
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")		
+	script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js')
+	script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js")
+	script(src="http://wuxiaoying.github.io/angular-multilevelpushmenu/javascripts/pushmenu.js")
+	script(src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js")
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js")
+	script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js")
+	script(src="js/lib/smart-table.js")
+	script(src='js/app.js')
+	script(src='js/services.js')
+	script(src='js/menuCtrl.js')
+	script(src='js/driversCtrl.js')
+	script(src='js/appsCtrl.js')
+	script(src='js/servicesCtrl.js')
+	script(src='js/filters.js')
+	script(src='js/directives.js')
+	script(src="http://maps.google.com/maps/api/js?sensor=false")

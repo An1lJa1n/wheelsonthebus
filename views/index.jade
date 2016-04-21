@@ -1,31 +1,173 @@
 extends layout
 block body
-	div(ng-controller='menuCtrl')
-		wxy-push-menu(menu="menu", options="options")
-		div(style="float:right")
-				button(type="button", ng-click="logout()", class="btn btn-sm btn-danger")
-					i(class="glyphicon glyphicon-log-out")
-		div(id="pushobj", style="width:75%")
-			div(ng-view, style="font-size:small")
-			ul
-				li(ng-repeat="event in events track by $index", ng-bind="event")
-		div(style="height:50px")		
-	script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")		
-	script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js")
-	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js')
-	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js')
-	script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js")
-	script(src="http://wuxiaoying.github.io/angular-multilevelpushmenu/javascripts/pushmenu.js")
-	script(src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js")
-	script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js")
-	script(src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js")
-	script(src="js/lib/smart-table.js")
-	script(src='js/app.js')
-	script(src='js/services.js')
-	script(src='js/menuCtrl.js')
-	script(src='js/driversCtrl.js')
-	script(src='js/appsCtrl.js')
-	script(src='js/servicesCtrl.js')
-	script(src='js/filters.js')
-	script(src='js/directives.js')
-	script(src="http://maps.google.com/maps/api/js?sensor=false")
+	#sb-site
+		#loading
+			.spinner
+				.bounce1               
+				.bounce2          
+				.bounce3  
+		#page-wrapper
+			#page-header.bg-gradient-9(ng-controller="userCtrl")
+				#mobile-navigation
+					button#nav-toggle.collapsed(data-toggle='collapse', data-target='#page-sidebar')
+						span                    
+					a.logo-content-small(href='index.html', title='Brain Vault')                
+				#header-logo.logo-bg
+					a.logo-content-big(href='index.html', title='Brain Vault') Brain Vault 
+					a.logo-content-small(href='index.html', title='Brain Vault') Brain Vault 
+					a#close-sidebar(href='#', title='Close sidebar')
+						i.glyph-icon.icon-angle-left
+				#header-nav-left
+					.user-account-btn.dropdown
+						a.user-profile.clearfix(href='#', title='My Account', data-toggle='dropdown')
+							img(width='28', src='images/gravatar.jpg', alt='Profile image') 
+							{{userName}}
+							i.glyph-icon.icon-angle-down
+						.dropdown-menu.float-left
+							.box-sm
+								.login-box.clearfix
+									.user-img
+										a.change-img(href='#', title='') Change photo
+										img(src='images/gravatar.jpg', alt='')
+									.user-info
+										span
+											| Thomas Barnes
+											i UX/UI developer
+										a(href='#', title='Edit profile') Edit profile
+										a(href='#', title='View notifications') View notifications
+								.pad5A.button-pane.button-pane-alt.text-center
+									button(type="button", ng-click="logout()", class="btn btn-sm btn-danger")
+										i.glyph-icon.icon-power-off
+				#header-nav-left(style="padding-top: 20px;font-size:30px;color: white;")
+					span {{schoolName}}			
+				#header-nav-right
+					a.hdr-btn.popover-button(href='#', title='Search', data-placement='bottom', data-id='#popover-search')
+						i.glyph-icon.icon-search
+					#popover-search.hide
+						.pad5A
+							.input-group
+								input.form-control(type='text', placeholder='Search terms here ...')
+								span.input-group-btn
+									a.btn.btn-primary(href='#') Search
+					a#fullscreen-btn.hdr-btn(href='#', title='Fullscreen')
+						i.glyph-icon.icon-arrows-alt
+					#notifications-btn.dropdown
+						a(data-toggle='dropdown', href='#', title='')
+							span.small-badge.bg-yellow
+							i.glyph-icon.icon-linecons-megaphone
+						.dropdown-menu.box-md.float-right
+							.popover-title.display-block.clearfix.pad10A Notifications
+								a.text-transform-cap.font-primary.font-normal.btn-link.float-right(href='#', title='View more options') More options...
+							.scrollable-content.scrollable-slim-box
+								ul.no-border.notifications-box
+									li
+										span.bg-danger.icon-notification.glyph-icon.icon-bullhorn
+										span.notification-text This is an error notification
+										.notification-time a few seconds ago
+										span.glyph-icon.icon-clock-o
+									li
+										span.bg-warning.icon-notification.glyph-icon.icon-users
+										span.notification-text.font-blue This is a warning notification
+										.notification-time
+											b 15 minutes ago
+											span.glyph-icon.icon-clock-o
+							.pad10A.button-pane.button-pane-alt.text-center
+								a.btn.btn-primary(href='#', title='View all notifications') View all notifications
+					#progress-btn.dropdown
+						a(data-toggle='dropdown', href='#', title='')
+							span.small-badge.bg-azure
+							i.glyph-icon.icon-linecons-params
+						#progress-dropdown.dropdown-menu.pad0A.box-sm.float-right
+							.scrollable-content.scrollable-slim-box
+								ul.no-border.progress-box.progress-box-links
+									li
+										a(href='#', title='')
+											b.pull-right 23%
+											.progress-title Finishing uploading files
+											.progressbar-smaller.progressbar(data-value='23')
+												.progressbar-value.bg-blue-alt
+													.progressbar-overlay
+									li
+										a(href='#', title='')
+											b.pull-right 91%
+											.progress-title
+												| Roadmap progress
+											.progressbar-smaller.progressbar(data-value='91')
+												.progressbar-value.bg-red
+													.progressbar-overlay
+							.pad5A.button-pane.button-pane-alt.text-center
+								a.btn.display-block.font-normal.hover-green(href='#', title='View all notifications')
+									| View all notifications
+					// #header-nav-right
+			#page-sidebar
+				.scroll-sidebar
+					ul#sidebar-menu
+						li.header
+							span Overview
+						li
+							a(href='index.html', title='Admin Dashboard')
+								i.glyph-icon.icon-linecons-tv
+								span Dashboard
+						li.divider
+						li.header
+							span Categories
+						li
+							a(ng-href='busServices', title='Dashboard boxes')
+								i.glyph-icon.icon-linecons-lightbulb
+								span Bus Services
+						li
+							a(ng-href='drivers', title='Widgets')
+								i.glyph-icon.icon-linecons-wallet
+								span Drivers
+						li
+							a(ng-href='devices', title='Widgets')
+								i.glyph-icon.icon-linecons-wallet
+								span Devices
+						li
+							a(ng-href='changePassword', title='Widgets')
+								i.glyph-icon.icon-linecons-wallet
+								span Change Password
+						li.header
+							span Extra
+						li
+							a(href='#', title='Helpers')
+								i.glyph-icon.icon-linecons-doc
+								span Helpers
+							.sidebar-submenu
+								ul
+									li
+										a(href='helper-classes.html', title='Helper classes')
+											span Helper classes
+									li
+										a(href='page-transitions.html', title='Page transitions')
+											span Page transitions
+									li
+										a(href='animations.html', title='Animations')
+											span Animations
+							// .sidebar-submenu
+					// #sidebar-menu
+			#page-content-wrapper
+				#page-content
+					.container
+						#page-title
+							div(ng-view, style="font-size:small")
+								ul
+									li(ng-repeat="event in events track by $index", ng-bind="event")
+		script(src="js/lib/jquery.min.js")		
+		script(src='js/admin-all-demo.js')
+		script(src='js/lib/angular.js')
+		script(src='js/lib/angular-route.js')
+		script(src='js/lib/angular-animate.js')
+		script(src='js/lib/ui-bootstrap-tpls-0.14.3.js')
+		script(src='js/lib/lodash.js')
+		script(src="js/lib/angular-messages.js")
+		script(src="js/lib/smart-table.js")
+		script(src='js/app.js')
+		script(src='js/services.js')
+		script(src='js/filters.js')
+		script(src='js/menuCtrl.js')
+		script(src='js/driversCtrl.js')
+		script(src='js/appsCtrl.js')
+		script(src='js/servicesCtrl.js')
+		script(src='js/directives.js')
+		script(src="http://maps.google.com/maps/api/js?sensor=false")

@@ -29,8 +29,7 @@ angular.module("myApp.controllers")
       success(function(data, status, headers, config) {
         for(var key in data)
           $scope.apps.push({key: key, mobileNumber: data[key].mobileNumber});
-    });
-      
+    });      
     $scope.toggleModal = function(){
         $scope.service = {};
         $scope.selectedDriver= null;

@@ -4,11 +4,11 @@ modal(title="Add new Service", visible="showModal")
 			div(class= "col-md-6")
 				div(class="form-group")
 					label(for="BusNumber") Bus Number
-					input(class="form-control", id="BusNumber", ng-model = "service.busNumber", placeholder="Enter bus number")
+					input(class="form-control", id="BusNumber", ng-model = "service.busNumber", placeholder="Enter bus number" required)
 			div(class= "col-md-6")
 				div(class="form-group")
 					label(for="route") Route
-					input(class="form-control", id="route", ng-model = "service.route", placeholder="Route Details")
+					input(class="form-control", id="route", ng-model = "service.route", placeholder="Route Details" required)
 			div(class = "col-md-12")
 				div(class="form-group")
 					label(for="shiftTime") Shift Time
@@ -16,12 +16,12 @@ modal(title="Add new Service", visible="showModal")
 			div(class= "col-md-6")
 				div(class="form-group")
 					label(for="driver") Driver	
-					select(id="driver",class="form-control", ng-change="setSelectedDriver(selectedDriver)", ng-model="selectedDriver")
+					select(id="driver",class="form-control", ng-change="setSelectedDriver(selectedDriver)", ng-model="selectedDriver" ng-required)
 						option(ng-repeat="option in drivers", value="{{option.key}}"){{option.name}}
 			div(class= "col-md-6")
 				div(class="form-group")
 					label(for="app") App
-					select(id="app",class="form-control", ng-change="setSelectedApp(selectedApp)", ng-model="selectedApp")
+					select(id="app",class="form-control", ng-change="setSelectedApp(selectedApp)", ng-model="selectedApp" required)
 						option(ng-repeat="option in apps", value="{{option.key}}"){{option.mobileNumber}}
 		button(class="btn btn-default" ng-click="save()") Save
 div(class= "row")

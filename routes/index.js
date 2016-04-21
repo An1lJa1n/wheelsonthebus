@@ -26,10 +26,17 @@ exports.login = function(req, res){
 exports.index = function(req, res){
 	console.log(req.session.userProile.profile.schoolId);
 	firebaseRef.child("schools").child(req.session.userProile.profile.schoolId).once('value', function(data){
-		console.log("Test");
 		res.render('index');
 	});
 };
+exports.schoolInfo= function(req, res){
+	console.log(req.session.userProile.profile.schoolId);
+	firebaseRef.child("schools").child(req.session.userProile.profile.schoolId).once('value', function(data){
+		var val  = data.val();
+		res.json({name: req.session.userProile.profile.name, schoolName: val.name, lat: val.lat, lon:val.lon});
+	});
+};
+
 exports.logout = function(req, res){
 	console.log("logout called");
 	firebaseRef.unauth();

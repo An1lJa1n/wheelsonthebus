@@ -23,6 +23,8 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
   app.use(function(req, res, next) {
+    if(req.url.indexOf(".jpg")==0)
+      next()
     if(req.url.indexOf("/login")==0)
       next()
     else{
@@ -51,6 +53,7 @@ app.get('/', routes.index);
 app.get('/login', routes.login);
 app.post('/login', routes.login);
 app.get('/logout', routes.logout);
+app.get('/schoolInfo', routes.schoolInfo);
 app.get('/partials/:name', routes.partials);
 
 app.get('/api/drivers/getList', driversApi.getList);
